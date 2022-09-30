@@ -1,2 +1,2 @@
 # CS50-Introduction-to-Artificial-Intelegence-Projects
-Some of the assingment projects that I submited when taking the course 
+Some of my solutions for the courses assignments
