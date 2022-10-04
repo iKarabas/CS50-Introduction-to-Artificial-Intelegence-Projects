@@ -15,6 +15,9 @@ UNDERSTANDING
 
 There are two main files in this project: runner.py and tictactoe.py. tictactoe.py contains all of the logic for playing the game, and for making optimal moves. runner.py contains all of the code to run the graphical interface for the game. You need run python runner.py to play against AI! If you can beat it, please let me know :)
 
+tictactoe_test.py is a testing file for the game.
+It tests the game by letting the AI play against itself for 10 times. You can test it by running pytest tictactoe_test.py
+
 FUNCTIONS
 
 Let’s open up tictactoe.py to get an understanding for what’s provided. First, we define three variables: X, O, and EMPTY, to represent possible moves of the board.
