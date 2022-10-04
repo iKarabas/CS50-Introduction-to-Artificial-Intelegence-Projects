@@ -140,18 +140,27 @@ def minimax(board):
             return min_of_maximums(board)[1]
 
 
+"""
+functions needed to find the optimal move , one of them finds the best action to maximize the the value so that current player wins , the other one finds the best action to minimize the value so that the opponent wins. by calling them recursively we assumed the opponent plays optimally and minimax function finds the best move for the AI  
+
+"""
+
+
 def max_of_minimums(board):
     if terminal(board):
         return (utility(board), (0, 0))
     else:
         possible_actions = actions(board)
-        maximum_info = (-2, (0, 0))
+        maximizing_move_info = (-2, (0, 0))
         for action in possible_actions:
             temp = min_of_maximums(result(board, action))
-            if temp[0] > maximum_info[0]:
-                maximum_info = (temp[0], action)
+            if temp[0] > maximizing_move_info[0]:
+                maximizing_move_info = (temp[0], action)
+                # alpa beta prunning. If it is equals to 1, there is no need to look for other actions since this action already has the maximum possible value which is 1. all the other actions will produce a value less than or equal to 1
+                if temp[0] == 1:
+                    return maximizing_move_info
 
-    return maximum_info
+    return maximizing_move_info
 
 
 def min_of_maximums(board):
@@ -159,10 +168,13 @@ def min_of_maximums(board):
         return (utility(board), (0, 0))
     else:
         possible_actions = actions(board)
-        minimum_info = (2, (0, 0))
+        minimizing_move_info = (2, (0, 0))
         for action in possible_actions:
             temp = max_of_minimums(result(board, action))
-            if temp[0] < minimum_info[0]:
-                minimum_info = (temp[0], action)
+            if temp[0] < minimizing_move_info[0]:
+                minimizing_move_info = (temp[0], action)
+                # alpa beta prunning. If it is equals to -1, there is no need to look for other actions since this action already has the minimum possible value which is -1. all the other actions will produce a value greater than or equal to -1
+                if temp[0] == -1:
+                    return minimizing_move_info
 
-    return minimum_info
+    return minimizing_move_info
